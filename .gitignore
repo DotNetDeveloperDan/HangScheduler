@@ -1,0 +1,59 @@
+# Visual Studio build
+bin/
+obj/
+pub/
+debug/
+
+# Visual Studio config
+.vs/
+*.csproj.user
+*.pubxml.user
+
+# Verify received files
+*.received.*
+
+# npm
+**/node_modules/
+
+# webpack build
+**/wwwroot/dist/
+
+# Nix
+result
+result-*
+
+# Backend logs
+stag-api/STAGWeb/logs/
+stag-api/STAGWeb/cme-logs/
+**/.idea
+**/postgres-data
+*.DotSettings.user
+download-latest-db-dumps.lock
+**/market-data-connection-*
+
+**/.DS_Store
+
+# devshell
+/.data
+
+# postgresql dump
+*.dump
+
+stag-ui/cypress/videos/
+stag-ui/cypress/screenshots/
+stag-ui/cypress/downloads/
+
+# Cypress JUnit Output
+cypress-output
+node_modules
+cypress-env.json
+
+# terraform plan
+plan
+
+# certificates
+*.pem
+*.key
+
+#SonarQube
+.sonarqube/
