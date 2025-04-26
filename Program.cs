@@ -1,3 +1,4 @@
+using System.Reflection;
 using Hangfire;
 using Hangfire.Common;
 using Hangfire.LiteDB;
@@ -76,8 +77,11 @@ builder.Services.AddHttpClient("JobProcessorClient")
 
 builder.Services.AddOpenApiDocument(settings =>
 {
-    settings.Title = "My API";
-    settings.Version = "v1";
+    settings.Title = builder.Environment.ApplicationName;
+    settings.Version = Assembly.GetEntryAssembly()?
+                           .GetCustomAttribute<AssemblyInformationalVersionAttribute>()?
+                           .InformationalVersion
+                       ?? "1.0.0";
     // settings.UseXmlDocumentation is true by default; no extra code needed
 });
 
@@ -97,6 +101,7 @@ app.UseHangfireDashboard("/hangfire", new DashboardOptions
 // Configure the HTTP request pipeline for development
 if (!app.Environment.IsProduction())
 {
+    app.UseOpenApi();
     app.UseSwaggerUi(ui =>
     {
         ui.DocExpansion = "list";   // collapse sections by default
